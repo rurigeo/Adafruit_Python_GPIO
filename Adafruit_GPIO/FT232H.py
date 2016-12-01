@@ -547,7 +547,9 @@ class I2CDevice(object):
         # Enable drive-zero mode to drive outputs low on 0 and tri-state on 1.
         # This matches the protocol for I2C communication so multiple devices can
         # share the I2C bus.
-        self._ft232h._write('\x9E\x07\x00')
+        # When using the FT2232H and FT4232H, the drive-only-zero (open drain) feature is not available.
+        # So comment the fllowing command.
+        # self._ft232h._write('\x9E\x07\x00')
         self._idle()
 
     def _idle(self):
